@@ -50,7 +50,10 @@ post_class: post-template
                 Relation number: <span id="relNum"> </span> <br />
 
 
-              <div class="commentSpace" markdown="1"> </div>
+              <button id="prevBtn" class="btn btn-primary" onclick="nextPrev(-1)">Previous</button>
+              <button class="btn btn-primary" id="nextBtn" onclick="nextPrev(1)">Next</button>
+
+              <div id="commentSpace" markdown="1"> </div>
               <script>
                 makeDisplay(`{{ site.data.or | where: 'comment_id', page.title |
                 first| jsonify}}`);
