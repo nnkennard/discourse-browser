@@ -1,4 +1,9 @@
-function makeOneTab(tokens, rel){
+function makeOneTab(orig_tokens, i, relations){
+
+  tokens = orig_tokens.slice(0);
+
+  rel = relations[i];
+
   if (rel[0] > rel[2]){
     positions = [rel[2], rel[3], rel[0], rel[1]];
     ns = false;
@@ -20,7 +25,13 @@ function makeOneTab(tokens, rel){
     tokens.splice(positions[0], 0, `<span class="sat">`);
   }
 
-  return `<div class="tab" style="display:none">` + tokens.join(" ") + "</div>"
+  return `<div class="tab" style="display:none"> <br />
+
+  Relation type: <span id="relType"> ` + rel[4] + ` </span> <br />
+
+  Relation number: <span id="relNum"> ` + (i + 1) + "/" + relations.length + ` </span> <br />
+
+  ` + tokens.join(" ") + "</div>"
 
 }
 
@@ -29,21 +40,11 @@ function makeDisplay(comment_data){
   k = document.getElementById("commentSpace");
   newTokens = b["tokens"];
 
-  rel = b["rels"][1];
-
   commentIdSpan = document.getElementById("commentId");
   commentIdSpan.innerHTML = b["comment_id"];
 
-  relTypeSpan = document.getElementById("relType");
-  relTypeSpan.innerHTML = rel[4];
-
-  relNumSpan = document.getElementById("relNum");
-  relNumSpan.innerHTML = 1+"/"+b["rels"].length;
-
-
-
   for (var i=0;i<b["rels"].length; i++){
-    newTab = makeOneTab(b["tokens"], rel)
+    newTab = makeOneTab(b["tokens"], i, b["rels"])
     k.innerHTML += newTab;
   }
   showTab(0);
