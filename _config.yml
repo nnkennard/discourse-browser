@@ -1,0 +1,46 @@
+# Site
+name: "Discourse browser"
+title: "Discourse browser"
+description: "Browse RST parses of OpenReview reviews"
+logo: 'assets/images/logo.png'
+favicon: 'assets/images/logo.png'
+baseurl: /discourse-browser
+include: ["_pages"]
+permalink: /:title/
+encoding: utf-8
+
+# Authors
+authors:
+  - Kennard
+
+# Plugins
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-archives
+    
+# Archives
+jekyll-archives:
+  enabled:
+    - categories
+  layout: archive
+  permalinks:
+    category: '/category/:name/'
+    
+# Pagination 
+paginate: 6
+paginate_path: /page:num/
+    
+# Other
+markdown: kramdown
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: true
+
+exclude: [changelog.md, LICENSE.txt, README.md, Gemfile, Gemfile.lock]
