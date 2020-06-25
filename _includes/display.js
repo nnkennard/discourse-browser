@@ -59,14 +59,9 @@ function showTab(n) {
   x[n].style.display = "block";
   // ... and fix the Previous/Next buttons:
   if (n == 0) {
-    document.getElementById("prevBtn").style.display = "none";
+    document.getElementById("prevBtn").disabled = "true";
   } else {
-    document.getElementById("prevBtn").style.display = "inline";
-  }
-  if (n == (x.length - 1)) {
-    document.getElementById("nextBtn").innerHTML = "Submit";
-  } else {
-    document.getElementById("nextBtn").innerHTML = "Next";
+    document.getElementById("prevBtn").removeAttribute("disabled");
   }
   // ... and run a function that displays the correct step indicator:
 }
